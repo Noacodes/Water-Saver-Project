@@ -53,6 +53,7 @@ export default function RegisterPage() {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    console.log(values)
     try {
       // const response = await fetch('waterSaver/register', {
       //   method: 'POST',

@@ -12,7 +12,7 @@ export default function Calculators() {
           </CardHeader>
           <CardContent>
             <p className="mb-4">
-              Calculate your household's daily water consumption based on various factors like appliances, fixtures, and
+              Calculate your household&apos;s daily water consumption based on various factors like appliances, fixtures, and
               usage patterns.
             </p>
             <Button>Start Calculator</Button>

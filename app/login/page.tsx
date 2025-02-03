@@ -46,6 +46,7 @@ export default function LoginPage() {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    console.log(values)
     try {
       // const response = await fetch("/waterSaver/signin", {
       //   method: "POST",
@@ -72,6 +73,7 @@ export default function LoginPage() {
       router.push("/dashboard")
       
     } catch (error) {
+      console.error(error)
       toast({
         title: "Error",
         description: "Failed to login. Please try again.",
