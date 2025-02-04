@@ -48,32 +48,34 @@ export default function LoginPage() {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values)
     try {
-      // const response = await fetch("/waterSaver/signin", {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify({
-      //     email: values.email,
-      //     password: values.password,
-      //   }),
-      // });
+       const response = await fetch("https://watersavercalculator.onrender.com/waterSaver/signin", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: values.email,
+          password: values.password,
+          }),
+      });
 
-      // if (!response.ok) {
-      //   throw new Error("Login failed");
-      // }
 
-      // const data = await response.json();
+      if (!response.ok) {
+        throw new Error("Login failed");
+      }
+
+      const data = await response.json();
+      console.log(data)
 
       toast({
         title: "Success!",
         description: "You have successfully logged in.",
       });
 
-      router.push("/dashboard")
-      
+      router.push("/dashboard");
     } catch (error) {
-      console.error(error)
+      console.error(error);
+
       toast({
         title: "Error",
         description: "Failed to login. Please try again.",

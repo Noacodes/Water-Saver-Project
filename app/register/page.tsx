@@ -53,33 +53,41 @@ export default function RegisterPage() {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values)
+    console.log(values);
     try {
-      // const response = await fetch('waterSaver/register', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify({
-      //     email: values.email,
-      //     password: values.password
-      //   })
-      // });
+      const response = await fetch(
+        "https://watersavercalculator.onrender.com/waterSaver/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: values.email,
+            username: values.fullName,
+            password: values.password,
+          }),
+        }
+      );
 
-      // if (!response.ok) {
-      //   throw new Error('Registration failed');
-      // }
+      if (!response.ok) {
+        throw new Error("Registration failed");
+      }
+      const data = await response.json();
+      console.log(data);
 
       toast({
         title: "Account created!",
         description: "You can now sign in with your credentials.",
       });
 
-      router.push("/dashboard");
+      router.push("/login");
     } catch (error) {
       toast({
         title: "Error",
-        description: "Failed to create account. Please try again.",
+        description: `${
+          error instanceof Error ? error.message : "An unknown error occurred"
+        }`,
         variant: "destructive",
       });
       console.error(error);
