@@ -55,26 +55,7 @@ export default function RegisterPage() {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
     try {
-      const response = await fetch(
-        "https://watersavercalculator.onrender.com/waterSaver/register",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: values.email,
-            username: values.fullName,
-            password: values.password,
-          }),
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error("Registration failed");
-      }
-      const data = await response.json();
-      console.log(data);
+      
 
       toast({
         title: "Account created!",
